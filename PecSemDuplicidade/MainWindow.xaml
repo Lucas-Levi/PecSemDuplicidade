@@ -1,0 +1,77 @@
+﻿<Window x:Class="PecSemDuplicidade.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PecSemDuplicidade"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
+        mc:Ignorable="d"
+        Title="PEC Sem Duplicidade"  Width="400" Height="300" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <StackPanel Margin="10"
+                VerticalAlignment="Center">
+        <Button Content="Abrir Planilha do PEC..."
+                Command="{Binding AbrirPlanilhaCommand}"/>
+        <Button Content="Salvar Relatório de Duplicações..."
+                Margin="0,10,0,0"
+                Command="{Binding SalvarPossiveisDuplicacoesCommand}"/>
+        <fa:ImageAwesome Icon="CircleOutlineNotch"
+                         Spin="True"
+                         Width="20"
+                         Height="20"
+                         Margin="0,10,0,0"
+                         Visibility="{Binding ChecandoDuplicacoes, Converter={StaticResource BoolToVis}}"/>
+        <TextBlock Text="Checando duplicações..."
+                   HorizontalAlignment="Center"
+                   Margin="0,5,0,0"
+                   Visibility="{Binding ChecandoDuplicacoes, Converter={StaticResource BoolToVis}}"/>
+        <TextBlock Margin="0,20,0,0"
+                   HorizontalAlignment="Center">
+            <Hyperlink Command="{Binding SobreECodigoFonteCommand}">
+                Sobre e Código-fonte
+            </Hyperlink>
+        </TextBlock>
+        <!--<Expander Header="Configurações"
+                  Margin="0,10,0,0">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Distância Máxima de Levenshtein"
+                       HorizontalAlignment="Center"
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <TextBlock Text="Para saber mais pesquise por algoritmo de Levenshtein"
+                           HorizontalAlignment="Center"
+                           Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="9">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <Label Content="Distância máxima nome:"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="0,10,0,0"/>
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         Margin="5,10,0,0"/>
+                <Label Content="Distância máxima data de nascimento:"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="0,10,0,0"/>
+                <TextBox Grid.Row="3"
+                         Grid.Column="1"
+                         Margin="5,10,0,0"/>
+            </Grid>
+        </Expander>-->
+    </StackPanel>
+</Window>
